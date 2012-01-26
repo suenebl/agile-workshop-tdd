@@ -3,6 +3,8 @@ package br.com.caelum.tdd.exercicio1;
 import static br.com.caelum.tdd.exercicio1.Position.DBA;
 import static br.com.caelum.tdd.exercicio1.Position.DEVELOPER;
 import static br.com.caelum.tdd.exercicio1.Position.TESTER;
+import static br.com.caelum.tdd.exercicio1.Position.MANAGER;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -76,6 +78,27 @@ public class SalaryCalculatorTest {
 		
 		assertEquals(1000.0 * 0.85, salario, 0.000001);
 	}
+	
+	
+	@Test
+	public void deveRetornar1000MenosImpostosDe15PorCentoSeManagerGanhaMenosDe5000(){
+		Employee manager = umFuncionario(MANAGER, comSalarioBase(1000.0));
+		
+		double salario = calculator.calculate(manager);
+		
+		assertEquals(1000.0 * 0.85, salario, 0.000001);
+	}
+	 
+	
+	@Test
+	public void deveRetornar1000MenosImpostosDe20PorCentoSeManagerGanhaMaisIgualDe5000(){
+		Employee manager = umFuncionario(MANAGER, comSalarioBase(5000.0));
+		
+		double salario = calculator.calculate(manager);
+		
+		assertEquals(5000.0 * 0.80, salario, 0.000001);
+	}
+	 
 	
 		
 	private Employee umFuncionario(Position cargo, double salario) {

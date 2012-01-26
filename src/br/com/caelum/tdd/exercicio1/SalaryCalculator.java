@@ -3,6 +3,7 @@ package br.com.caelum.tdd.exercicio1;
 import static br.com.caelum.tdd.exercicio1.Position.DBA;
 import static br.com.caelum.tdd.exercicio1.Position.DEVELOPER;
 import static br.com.caelum.tdd.exercicio1.Position.TESTER;
+import static br.com.caelum.tdd.exercicio1.Position.MANAGER;
 
 public class SalaryCalculator {
 
@@ -16,8 +17,23 @@ public class SalaryCalculator {
 			return fifteenOrTwentyFivePercent(employee);
 		}
 		
+		if(MANAGER.equals(employee.getPosition())){
+			return  fifteenOrTwentyPercent(employee) ;
+		}
+		
+		
 		throw new RuntimeException("invalid employee");
 	}
+	
+	private double fifteenOrTwentyPercent(Employee employee) {
+		if(employee.getBaseSalary() >= 5000.0) {
+			return employee.getBaseSalary() * 0.8;
+		}
+	
+		return employee.getBaseSalary() * 0.85;
+	
+	}
+
 
 	private double tenOrTwentyPercent(Employee employee) {
 		if(employee.getBaseSalary() > 3000.0) {
